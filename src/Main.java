@@ -54,7 +54,15 @@ public class Main {
 
         System.out.println("Prodotti dopo: " + products.size());
         System.out.println("Aggiunto -> " + nuovo);
-        
+
+        System.out.println("\n===Rimozione==");
+
+        Product daRimuovere = products.get(2); //Tastiera
+        System.out.println("Sto rimuovendo ->" + daRimuovere);
+
+        boolean rimosso = products.remove(daRimuovere);
+        System.out.println("Riuscita?" + rimosso);
+        System.out.println("Prodotti ora? " + products.size());
 
 
 
