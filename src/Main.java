@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Main {
@@ -17,9 +18,11 @@ public class Main {
                 new Product(2L,"Claude Code", "AI", 20),
                 new Product(3L, "Tastiera","Hardware",50),
                 new Product(4L, "Netflix","Streaming",19.99),
-                new Product(5L,"PSN","GamePass",149.99),
+                new Product(5L,"PSN","Boys",149.99),
                 new Product(6L,"Biberon","Baby",8.50),
-                new Product(7L,"Passeggino","Baby",49.99)
+                new Product(7L,"Passeggino","Baby",49.99),
+                new Product(8L, "Il Signore Degli Anelli","Books",50.00),
+                new Product(9L,"Eragon","Books",20.00)
         ));
 
         Customer Aldo = new Customer(1L,"Aldo Baglio", 1);
@@ -90,9 +93,26 @@ public class Main {
 
         System.out.println("Totale prodotti nel catalogo: " + products.size());
 
+        System.out.println("\n===Libri sopra i 30€===");
+        List<Product> booksCari = products.stream()
+                .filter(p -> p.getCategory().equals("Books"))
+                .filter(p -> p.getPrice() >30)
+                .toList();
 
+        booksCari.forEach(p -> System.out.println(" " + p ));
 
+        System.out.println("\n===sconto 10%===");
+        List<Product> scontoDieci = products.stream()
+                .filter(p -> "Boys".equalsIgnoreCase(p.getCategory()))
+                .map(p -> new Product(
+                        p.getId(),
+                        p.getName(),
+                        p.getCategory(),
+                        p.getPrice()*0.9))
+                .collect(Collectors.toList());
 
+        scontoDieci.forEach(p ->
+                System.out.printf(" %-22s %8.2f€n", p.getName(), p.getPrice()));
 
 
 
