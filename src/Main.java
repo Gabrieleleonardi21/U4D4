@@ -49,7 +49,7 @@ public class Main {
         ));
         System.out.println(products);
 
-        System.out.println("===Aggiunta===");
+        System.out.println("\n===Aggiunta===");
         System.out.println("prodotti prima: "+ products.size());
 
         Product nuovo = new Product(8L, "Set Lego", "Boys", 49.99);
@@ -95,9 +95,10 @@ public class Main {
 
         System.out.println("\n===Libri sopra i 30€===");
         List<Product> booksCari = products.stream()
-                .filter(p -> p.getCategory().equals("Books"))
-                .filter(p -> p.getPrice() >30)
-                .toList();
+                .filter(p -> "Books".equalsIgnoreCase(p.getCategory()) && p.getPrice() > 30)
+                .collect(Collectors.toList());
+
+        booksCari.forEach(p -> System.out.println("  " + p));
 
         booksCari.forEach(p -> System.out.println(" " + p ));
 
@@ -116,6 +117,30 @@ public class Main {
 
 
 
+        System.out.println("\n===ORDINI CON ALMENO UN PRODOTTO BABY===");
+
+        List<Order> ordiniBaby = orders.stream()
+                .filter(o -> o.getProducts().stream()
+                        .anyMatch(p -> "Baby".equalsIgnoreCase(p.getCategory())))
+                .collect(Collectors.toList());
+
+        ordiniBaby.forEach(o -> System.out.println("  " + o));
+
+        System.out.println("\n=== 2.4 PRODOTTI ORDINATI DA CLIENTI TIER 2 (LUG 2026) ===");
+
+        LocalDate inizio = LocalDate.of(2026, 7, 1);
+        LocalDate fine   = LocalDate.of(2026, 8, 1);
+
+        List<Product> prodottiTier2 = orders.stream()
+                .filter(o -> o.getCustomer().getTier() == 2)
+                .filter(o -> !o.getOrderDate().isBefore(inizio)
+                        && !o.getOrderDate().isAfter(fine))
+                .flatMap(o -> o.getProducts().stream())
+                .distinct()
+                .collect(Collectors.toList());
+
+        prodottiTier2.forEach(p -> System.out.printf("  %-22s %-8s %8.2f€%n",
+                p.getName(), p.getCategory(), p.getPrice()));
 
     }
 }

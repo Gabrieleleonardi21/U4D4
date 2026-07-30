@@ -43,7 +43,14 @@ public class Order {
     }
 
     @Override
-    public String toString(){
-        return String.format("Order{id=, status=, orderDate=, deliveryDate=, cliente=, prodotti=}" + id, status, orderDate, deliveryDate, customer.getName(), products.size());
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                ", products=" + products +
+                ", customer=" + customer +
+                '}';
     }
 }

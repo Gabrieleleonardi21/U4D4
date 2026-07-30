@@ -22,8 +22,13 @@ public class Customer {
     public Integer getTier() {
         return tier;
     }
+
     @Override
-    public  String toString(){
-        return String.format("Customer{id=, name=, tier=,}"+ id, name, tier);
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", tier=" + tier +
+                '}';
     }
 }
