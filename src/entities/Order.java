@@ -44,6 +44,8 @@ public class Order {
 
     @Override
     public String toString(){
-        return String.format("Order{id=, status=, orderDate=, deliveryDate=, cliente=, prodotti=}" + id, status, orderDate, deliveryDate, customer.getName(), products.size());
+        // %s su LocalDate usa il suo toString; se deliveryDate è null stampa "null"
+        return String.format("Order{id=%d, status=%s, orderDate=%s, deliveryDate=%s, cliente=%s, prodotti=%d}",
+                id, status, orderDate, deliveryDate, customer.getName(), products.size());
     }
 }
