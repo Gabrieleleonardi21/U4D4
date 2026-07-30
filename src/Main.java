@@ -47,7 +47,14 @@ public class Main {
         System.out.println(products);
 
         System.out.println("===Aggiunta===");
-        System.out.println();
+        System.out.println("prodotti prima: "+ products.size());
+
+        Product nuovo = new Product(8L, "Set Lego", "Boys", 49.99);
+        products.add(nuovo);
+
+        System.out.println("Prodotti dopo: " + products.size());
+        System.out.println("Aggiunto -> " + nuovo);
+        
 
 
 
