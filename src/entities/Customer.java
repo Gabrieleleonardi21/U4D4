@@ -2,13 +2,13 @@ package entities;
 
 public class Customer {
     private final Long id;
-    private  final String name;
+    private final String name;
     private final Integer tier;
-    public  Customer(Long id, String name, Integer tier){
-        this.id= id;
-        this.name= name;
-        this.tier= tier;
 
+    public Customer(Long id, String name, Integer tier){
+        this.id = id;
+        this.name = name;
+        this.tier = tier;
     }
 
     public Long getId() {
@@ -23,7 +23,8 @@ public class Customer {
         return tier;
     }
     @Override
-    public  String toString(){
-        return String.format("Customer{id=, name=, tier=,}"+ id, name, tier);
+    public String toString(){
+        // %d = intero, %s = stringa (stesso schema di Product)
+        return String.format("Customer{id=%d, name=%s, tier=%d}", id, name, tier);
     }
 }
