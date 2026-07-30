@@ -64,9 +64,31 @@ public class Main {
         System.out.println("Riuscita?" + rimosso);
         System.out.println("Prodotti ora? " + products.size());
 
+        System.out.println("\n===Contains===");
+        System.out.println("La tastiera è ancora presente?" + products.contains(daRimuovere));
+        System.out.println("Il set lego è stato aggiunto?" + products.contains(nuovo));
 
 
+        System.out.println("\n===Lettura e Sostituzione");
 
+        int posizione = 1;
+        Product vecchio = products.get(posizione);
+        System.out.println("In posizione " + posizione + " c'era -> " + vecchio);
+
+        Product sostituto = new Product(9L, "Refactoring", "Software", 500);
+        Product sostituito = products.set(posizione , sostituto);
+
+        System.out.println("Ora in posizione " + posizione + " c'è -> " + products.get(posizione));
+        System.out.println("il cambio è stato fatto con -> " + sostituito);
+
+        System.out.println("\n===ForEach===");
+
+        for (Product p : products){
+            System.out.printf(" [%d] %-25s %-8s %8.2f€%n",
+                     p.getId(), p.getName(), p.getCategory(), p.getPrice());
+        }
+
+        System.out.println("Totale prodotti nel catalogo: " + products.size());
 
 
 
